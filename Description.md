@@ -1,21 +1,21 @@
 # base-app
 
 ## 構成
-  - todo-backend
+  - backend
     - Spring Boot によるバックエンドアプリケーションとコンテナ
       - Spring Boot: 2.1.1.RELEASE
         - Spring Data JDBC
-  - todo-frontend
+  - frontend
     - Vue.js によるフロントエンドアプリケーションとコンテナ
       - Vue.js: 2.5.17
         - Vue CLI: 
       - Nginx: 1.14.0
         - フロントエンドをホスティング
         - バックエンドへの通信をリバースプロキシ
-  - todo-mysql
+  - mysql
     - MySQL によるデータベースコンテナ
       - MySQL: 5.7
-  - todo-at
+  - at
     - Acceptance Test 実行用プロジェクト
   - ci
     - CI パイプライン関連コンテナ
@@ -40,13 +40,13 @@
   ```
   2. フロントエンドのソースコードをビルド
   ```
-  $ cd {PWD}/todo-frontend
+  $ cd {PWD}/frontend
   $ npm install
   $ npm run build
   ```
   3. バックエンドのソースコードをビルド
   ```
-  $ cd {PWD}/todo-backend
+  $ cd {PWD}/backend
   $ mvn clean package
   ```
   4. フロントエンド・バックエンド・MySQL各コンテナをビルドして起動
@@ -72,7 +72,7 @@
   $ cp -r {PWD}/* ./{GIT_REPO_NAME}
   $ cd {GIT_REPO_NAME}
   $ git add *
-  $ git update-index --add --chmod=+x todo-backend/wait-for-it.sh
+  $ git update-index --add --chmod=+x backend/wait-for-it.sh
   $ git commit -m "initial commit"
   $ git push
   ```
