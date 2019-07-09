@@ -1,0 +1,27 @@
+version: '2'
+services:
+  mysql:
+    build: "./mysql"
+    container_name: "mysql"
+    environment:
+      MYSQL_ROOT_PASSWORD: P@ssw0rd
+      MYSQL_USER: todo
+      MYSQL_PASSWORD: P@ssw0rd
+      MYSQL_DATABASE: todo
+    ports:
+     - "3306:3306"
+  backend:
+    build: "./backend"
+    container_name: "backend"
+    ports:
+     - "8080:8080"
+    depends_on: 
+     - mysql
+    entrypoint: ./wait-for-it.sh mysql:3306 -- java -Djava.security.egd=file:/dev/./urandom -Dspring.profiles.active=container -jar /app.jar
+  frontend:
+    build: "./frontend"
+    container_name: "frontend"
+    ports:
+     - "80:80"
+    depends_on: 
+     - backend
